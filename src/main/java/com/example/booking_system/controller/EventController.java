@@ -4,10 +4,12 @@ import com.example.booking_system.dto.CreateEventRequestDto;
 import com.example.booking_system.dto.EventDto;
 import com.example.booking_system.mapper.EventMapper;
 import com.example.booking_system.service.EventService;
+import com.example.booking_system.utils.ValidationUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class EventController {
-    private EventService eventService;
+    private final EventService eventService;
 
     @GetMapping("/events")
     public ResponseEntity<List<EventDto>> listEvents() {
@@ -28,7 +30,10 @@ public class EventController {
     }
 
     @PostMapping("/admin/event")
-    public ResponseEntity<String> createEvent(@Valid @RequestBody CreateEventRequestDto request) {
+    public ResponseEntity<String> createEvent(@Valid @RequestBody CreateEventRequestDto request, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            ValidationUtils.validate(bindingResult);
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(eventService.createEvent(request));
     }
 }

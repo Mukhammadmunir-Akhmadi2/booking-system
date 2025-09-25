@@ -5,7 +5,6 @@ import com.example.booking_system.dto.TicketDto;
 import com.example.booking_system.model.Order;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OrderMapper {
     public static OrderResponseDto toDto(Order order) {
@@ -18,7 +17,7 @@ public class OrderMapper {
         List<TicketDto> ticketDtos = order.getTickets()
                 .stream()
                 .map(TicketMapper::toTicketDto)
-                .collect(Collectors.toList());
+                .toList();
 
         dto.setTickets(ticketDtos);
 

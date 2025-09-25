@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "orders")
@@ -23,10 +21,6 @@ public class Order {
     private LocalDateTime bookingTime;
     @Column(name = "total_amount", nullable = false)
     private BigDecimal totalAmount;
-    @ManyToMany
-    @JoinTable(
-            name = "order_tickets",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "ticket_id"))
-    private Set<Ticket> tickets = new HashSet<>();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
 }

@@ -16,8 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -31,27 +29,32 @@ public class OrderService {
     @Transactional
     public OrderResponseDto createOrder(CreateOrderRequestDto request) {
         User currentUser = userService.getUserById(request.getUserId());
+        Order order;
+        if (currentUser.getOrder() == null) {
+            order = new Order();
+            order.setTotalAmount(request.getTotalAmount());
 
-        Order order = new Order();
+        } else {
+            order = currentUser.getOrder();
+            order.setTotalAmount(order.getTotalAmount().add(request.getTotalAmount()));
+        }
+
         order.setUser(currentUser);
         order.setBookingTime(LocalDateTime.now());
-        order.setTotalAmount(request.getTotalAmount());
 
-        if (currentUser.getOrder() != null) {
-            for(TicketDto ticketDto : request.getTickets()) {
-                Ticket ticket = ticketService.getAvailableTicket(ticketDto.getTicketId());
-                ticket.setStatus(Status.BOOKED);
-                ticketService.saveTicket(ticket);
+        for(TicketDto ticketDto : request.getTickets()) {
+            Ticket ticket = ticketService.getAvailableTicket(ticketDto.getTicketId());
+            ticket.setStatus(Status.BOOKED);
+            ticket.setOrder(order);
+            ticketService.saveTicket(ticket);
 
-                Event event = ticket.getEvent();
-                event.setAvailableTickets(event.getAvailableTickets() - 1);
-                eventService.saveEvent(event);
+            Event event = ticket.getEvent();
+            event.setAvailableTickets(event.getAvailableTickets() - 1);
+            eventService.saveEvent(event);
 
-                order.getTickets().add(ticket);
-            }
-
-
+            order.getTickets().add(ticket);
         }
+
         Order savedOrder = orderRepository.save(order);
 
         currentUser.setOrder(savedOrder);
