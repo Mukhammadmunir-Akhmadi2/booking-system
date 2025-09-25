@@ -1,6 +1,6 @@
 package com.example.booking_system.controller;
 
-import com.example.booking_system.dto.CreateEventRequest;
+import com.example.booking_system.dto.CreateEventRequestDto;
 import com.example.booking_system.dto.EventDto;
 import com.example.booking_system.mapper.EventMapper;
 import com.example.booking_system.service.EventService;
@@ -28,7 +28,7 @@ public class EventController {
     }
 
     @PostMapping("/admin/event")
-    public ResponseEntity<String> createEvent(@Valid @RequestBody CreateEventRequest request) {
+    public ResponseEntity<String> createEvent(@Valid @RequestBody CreateEventRequestDto request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(eventService.createEvent(request));
     }
 }

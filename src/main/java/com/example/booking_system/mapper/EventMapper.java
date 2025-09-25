@@ -9,7 +9,7 @@ public class EventMapper {
         if (event == null) return null;
 
         EventDto dto = new EventDto();
-        dto.setId(event.getId() != null ? event.getId().toString() : null);
+        dto.setEventId(event.getId());
         dto.setName(event.getName());
         dto.setDateTime(DateTimeUtils.toString(event.getDateTime()));
         dto.setVenue(event.getVenue());

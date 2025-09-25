@@ -2,9 +2,11 @@ package com.example.booking_system.dto;
 
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public class EventDto {
-    private String id;
+    private UUID eventId;
     private String name;
     private String dateTime;
     private String venue;

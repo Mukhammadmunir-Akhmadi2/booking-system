@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CreateEventRequest {
+public class CreateEventRequestDto {
     @NotBlank
     private String name;
     @NotBlank
