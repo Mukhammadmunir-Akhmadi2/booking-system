@@ -2,8 +2,7 @@ package com.example.booking_system.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +22,7 @@ public class Order {
     @Column(name = "booking_time", nullable = false)
     private LocalDateTime bookingTime;
     @Column(name = "total_amount", nullable = false)
-    private long totalAmount;
+    private BigDecimal totalAmount;
     @ManyToMany
     @JoinTable(
             name = "order_tickets",

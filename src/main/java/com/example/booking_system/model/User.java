@@ -1,9 +1,7 @@
 package com.example.booking_system.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 

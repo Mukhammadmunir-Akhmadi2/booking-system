@@ -3,7 +3,7 @@ package com.example.booking_system.model;
 import com.example.booking_system.enums.Status;
 import jakarta.persistence.*;
 import lombok.Data;
-
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -24,7 +24,7 @@ public class Ticket {
     private LocalDateTime dateTime;
     @Enumerated(EnumType.STRING)
     private Status status;
-    private long price;
+    private BigDecimal price;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
