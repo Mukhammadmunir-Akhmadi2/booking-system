@@ -41,6 +41,8 @@ public class OrderServiceImpl implements OrderService {
         order.setUser(currentUser);
         order.setBookingTime(LocalDateTime.now());
 
+        Order savedOrder = orderRepository.save(order);
+
         for(TicketDto ticketDto : request.getTickets()) {
             Ticket ticket = ticketService.getAvailableTicket(ticketDto.getTicketId());
             ticket.setStatus(Status.BOOKED);
@@ -53,9 +55,6 @@ public class OrderServiceImpl implements OrderService {
 
             order.getTickets().add(ticket);
         }
-
-        Order savedOrder = orderRepository.save(order);
-
         currentUser.setOrder(savedOrder);
         return OrderMapper.toDto(savedOrder);
     }
