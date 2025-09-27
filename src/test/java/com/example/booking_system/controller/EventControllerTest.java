@@ -2,9 +2,8 @@ package com.example.booking_system.controller;
 
 import com.example.booking_system.dto.CreateEventRequestDto;
 import com.example.booking_system.dto.CreateTicketDto;
-import com.example.booking_system.dto.TicketDto;
 import com.example.booking_system.model.Event;
-import com.example.booking_system.service.EventService;
+import com.example.booking_system.service.impl.EventServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ class EventControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private EventService eventService;
+    private EventServiceImpl eventService;
 
     @Autowired
     private ObjectMapper objectMapper;

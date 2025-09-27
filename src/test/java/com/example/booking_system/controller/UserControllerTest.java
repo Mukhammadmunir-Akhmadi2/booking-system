@@ -1,7 +1,7 @@
 package com.example.booking_system.controller;
 
 import com.example.booking_system.dto.UserDTO;
-import com.example.booking_system.service.UserService;
+import com.example.booking_system.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -27,7 +27,7 @@ class UserControllerTest {
     private ObjectMapper objectMapper;
 
     @MockitoBean
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Test
     void createUser_returnsCreatedStatusAndUUID() throws Exception {

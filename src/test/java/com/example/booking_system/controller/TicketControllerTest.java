@@ -2,7 +2,7 @@ package com.example.booking_system.controller;
 
 import com.example.booking_system.model.Event;
 import com.example.booking_system.model.Ticket;
-import com.example.booking_system.service.TicketService;
+import com.example.booking_system.service.impl.TicketServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ class TicketControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private TicketService ticketService;
+    private TicketServiceImpl ticketService;
 
     @Test
     void getTicketsByEventId_returnsListOfTickets() throws Exception {

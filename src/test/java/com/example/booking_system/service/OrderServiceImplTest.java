@@ -10,6 +10,10 @@ import com.example.booking_system.model.Order;
 import com.example.booking_system.model.Ticket;
 import com.example.booking_system.model.User;
 import com.example.booking_system.repository.OrderRepository;
+import com.example.booking_system.service.impl.EventServiceImpl;
+import com.example.booking_system.service.impl.OrderServiceImpl;
+import com.example.booking_system.service.impl.TicketServiceImpl;
+import com.example.booking_system.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -26,19 +30,19 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class OrderServiceTest {
+class OrderServiceImplTest {
 
     @Mock
     private OrderRepository orderRepository;
     @Mock
-    private UserService userService;
+    private UserServiceImpl userService;
     @Mock
-    private TicketService ticketService;
+    private TicketServiceImpl ticketService;
     @Mock
-    private EventService eventService;
+    private EventServiceImpl eventService;
 
     @InjectMocks
-    private OrderService orderService;
+    private OrderServiceImpl orderService;
 
     private User user;
     private Ticket ticket;

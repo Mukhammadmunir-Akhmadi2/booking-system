@@ -3,6 +3,7 @@ package com.example.booking_system.service;
 import com.example.booking_system.exceptions.ResourceNotFoundException;
 import com.example.booking_system.model.Ticket;
 import com.example.booking_system.repository.TicketRepository;
+import com.example.booking_system.service.impl.TicketServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -21,7 +22,7 @@ class TicketServiceTest {
     private TicketRepository ticketRepository;
 
     @InjectMocks
-    private TicketService ticketService;
+    private TicketServiceImpl ticketService;
 
     @BeforeEach
     void setUp() {

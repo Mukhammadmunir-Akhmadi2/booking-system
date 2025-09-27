@@ -6,6 +6,8 @@ import com.example.booking_system.exceptions.ResourceNotFoundException;
 import com.example.booking_system.model.Event;
 import com.example.booking_system.model.Ticket;
 import com.example.booking_system.repository.EventRepository;
+import com.example.booking_system.service.impl.EventServiceImpl;
+import com.example.booking_system.service.impl.TicketServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -23,16 +25,16 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class EventServiceTest {
+class EventServiceImplTest {
 
     @Mock
     private EventRepository eventRepository;
 
     @Mock
-    private TicketService ticketService;
+    private TicketServiceImpl ticketService;
 
     @InjectMocks
-    private EventService eventService;
+    private EventServiceImpl eventService;
 
     private Event sampleEvent;
     private UUID eventId;

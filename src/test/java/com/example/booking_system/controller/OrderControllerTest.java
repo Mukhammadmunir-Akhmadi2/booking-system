@@ -3,7 +3,7 @@ package com.example.booking_system.controller;
 import com.example.booking_system.dto.CreateOrderRequestDto;
 import com.example.booking_system.dto.OrderResponseDto;
 import com.example.booking_system.dto.TicketDto;
-import com.example.booking_system.service.OrderService;
+import com.example.booking_system.service.impl.OrderServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ class OrderControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private OrderService orderService;
+    private OrderServiceImpl orderService;
 
     @Autowired
     private ObjectMapper objectMapper;

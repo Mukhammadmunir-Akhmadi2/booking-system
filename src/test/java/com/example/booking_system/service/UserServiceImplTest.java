@@ -4,6 +4,7 @@ import com.example.booking_system.dto.UserDTO;
 import com.example.booking_system.exceptions.ResourceNotFoundException;
 import com.example.booking_system.model.User;
 import com.example.booking_system.repository.UserRepository;
+import com.example.booking_system.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -17,13 +18,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class UserServiceTest {
+class UserServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
 
     @InjectMocks
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @BeforeEach
     void setUp() {

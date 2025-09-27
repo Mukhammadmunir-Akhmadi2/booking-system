@@ -1,8 +1,10 @@
 package com.example.booking_system.handlers;
 
+import com.example.booking_system.exceptions.DuplicationException;
 import com.example.booking_system.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -24,14 +26,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> handleResourceNotFound(ResourceNotFoundException e) {
         logger.warn("Resource not found: {}", e.getMessage());
-        return ResponseEntity.status(404)   // 404 is appropriate for "not found"
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of("error", "Resource not found", "details", e.getMessage()));
+    }
+
+    @ExceptionHandler(DuplicationException.class)
+    public ResponseEntity<?> handleDuplicationException(DuplicationException e) {
+        logger.warn("Duplication: {}", e.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of("error", "Duplication", "details", e.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleUnexpectedException(Exception e) {
         logger.error("Unexpected error occurred", e);
-        return ResponseEntity.status(500)
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Map.of("error", "Internal Server Error", "details", e.getMessage()));
     }
 }

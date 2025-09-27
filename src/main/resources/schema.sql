@@ -30,5 +30,5 @@ CREATE TABLE IF NOT EXISTS tickets (
     price DECIMAL(12,4) NOT NULL CHECK(price > 0),
     event_id UUID NOT NULL REFERENCES events(id),
     order_id UUID REFERENCES orders(id),
-    UNIQUE(event_id, row_number, seat_number)
+    UNIQUE(event_id, sector, row_number, seat_number)
 );
